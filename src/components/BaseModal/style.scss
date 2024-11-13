@@ -1,0 +1,42 @@
+.modal {
+  background: $white;
+  box-shadow: 0 0 40px 0 #a8ccf7;
+  border-radius: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  &__overlay {
+    position: fixed;
+    inset: 0px;
+    background-color: $overlay-background;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__close {
+    padding-top: 14px;
+    padding-right: 14px;
+    padding-bottom: 14px;
+    display: flex;
+    justify-content: right;
+    border-bottom: solid $border-color;
+  }
+}
+
+.profile__overlay {
+  justify-content: right;
+  align-items: start;
+}
+
+.close {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  width: auto;
+  min-height: 0;
+}

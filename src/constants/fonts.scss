@@ -1,0 +1,26 @@
+$font-inter: 'Inter', sans-serif;
+
+@mixin inter-font($weight: 400) {
+  font-family: $font-inter;
+  font-weight: $weight;
+}
+
+@mixin primary-thin {
+  @include inter-font(300);
+}
+
+@mixin primary {
+  @include inter-font(400);
+}
+
+@mixin primary-light {
+  @include inter-font(500);
+}
+
+@mixin primary-semi-bold {
+  @include inter-font(600);
+}
+
+@mixin primary-bold {
+  @include inter-font(700);
+}

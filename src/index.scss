@@ -1,0 +1,13 @@
+:root {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $backround;
+
+  @include primary;
+}
+
+
+body {
+  margin: 0;
+}
