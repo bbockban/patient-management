@@ -1,31 +1,36 @@
-import React, { useState, useRef, useEffect } from 'react';
-import classNames from 'classnames';
-
-import { useSelector } from 'react-redux';
-
-import 'react-loading-skeleton/dist/skeleton.css';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Button from '@/components/Button';
 
 import DefaultImage from '@/assets/images/user.webp';
 import Edit from '@/assets/icons/edit-solid.svg?react';
 
+import { setModalOpen, setCurrentPatient } from '@/features/sessionSlice';
+
 import PatientCardSkeleton from './PatientCardSkeleton';
 
 import './styles.scss';
 
 const PatientCard = ({ patient = {} }) => {
+  const dispatch = useDispatch();
+
   const { createdAt, name, avatar, description, website } = patient || {};
 
   const isFetching = useSelector(({ sessionReducer: { isFetchingPatients }}) => isFetchingPatients);
 
   const [isExpanded, setIsExpanded] = useState(false);
-  const [imageSrc, setImageSrc] = useState(avatar);
+  const [imageSrc, setImageSrc] = useState(DefaultImage);
 
   const handleError = () => {
     setImageSrc(DefaultImage);
   };
   
+  useEffect(() => {
+    setImageSrc(avatar);
+  }, [avatar])
+
   const formattedDate = new Date(createdAt).toLocaleDateString();
   
   const handleToggleDescription = () => setIsExpanded(!isExpanded);
@@ -48,7 +53,13 @@ const PatientCard = ({ patient = {} }) => {
             <h3 className="patient__name">{name}</h3>
             <p className="patient__date">Joined on {formattedDate}</p>
           </div>
-          <Edit onClick={() => {}} className="patient__edit"/>
+          <Edit 
+            onClick={() => {
+              dispatch(setCurrentPatient(patient));
+              dispatch(setModalOpen(true));
+            }} 
+            className="patient__edit"
+          />
         </div>
       </div>
       <div className="patient__footer">
@@ -77,6 +88,16 @@ const PatientCard = ({ patient = {} }) => {
         </div> */}
     </div>
   );
+};
+
+PatientCard.propTypes = {
+  patient: PropTypes.shape({
+    createdAt: PropTypes.string,
+    name: PropTypes.string,
+    avatar: PropTypes.string,
+    description: PropTypes.string,
+    website: PropTypes.string,
+  }),
 };
 
 export default PatientCard;
