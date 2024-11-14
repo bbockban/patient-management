@@ -1,6 +1,7 @@
 # Patient Management
 
 This is a React project built with Vite.
+The project uses node v22.1.0
 
 ## Installation
 
