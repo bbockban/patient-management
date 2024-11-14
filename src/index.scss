@@ -2,11 +2,10 @@
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  background-color: $backround;
+  background-color: $tertiary;
 
   @include primary;
 }
-
 
 body {
   margin: 0;

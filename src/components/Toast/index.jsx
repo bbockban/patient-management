@@ -9,7 +9,7 @@ const Toast = (text, type, autoClose = 3000) => {
     type,
     className: `toast toast--${type}`,
     autoClose,
-  })
+  });
 };
 
 export default Toast;

@@ -1,6 +1,6 @@
 # Patient Management
 
-This is a React project built with Vite. 
+This is a React project built with Vite.
 
 ## Installation
 
@@ -12,7 +12,6 @@ cd patient-management
 npm install
 npm run dev
 ```
-    
 This command runs the app in development mode. Open http://localhost:5173 to view it in your browser.
 
 Add .env file for API calls as exemplified on .env.example
@@ -38,8 +37,8 @@ patient-management/
 ├── public/             # Static assets
 ├── src/
 │   ├── assets/         # Images, icons, and other assets
-│   ├── components/     # Reusable components 
-│   ├── constants/      # Reusable scss constants 
+│   ├── components/     # Reusable components
+│   ├── constants/      # Reusable scss constants
 │   ├── api/            # API fetch configurations
 │   ├── features/       # Redux slices and state management
 │   ├── conatiners/     # Main application pages

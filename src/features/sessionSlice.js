@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // Normally would create a different slice for ui and data purposes
-// but added all actions under the same 
+// but added all actions under the same
 
 const initialState = {
   modalOpen: false,
-  patients:  Array.from({ length: 10 }, (_, index) => ({
+  patients: Array.from({ length: 10 }, (_, index) => ({
     id: index + 1,
   })),
   isFetchingPatients: false,
@@ -17,7 +17,7 @@ const sessionReducer = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    setCurrentPatient: (state, { payload } ) => ({
+    setCurrentPatient: (state, { payload }) => ({
       ...state,
       currentPatient: payload,
     }),
@@ -37,18 +37,17 @@ const sessionReducer = createSlice({
     addNewPatient: (state, { payload }) => ({
       ...state,
       isSubmitingPatient: false,
-      patients: [
-        payload,
-        ...state.patients,
-      ],
+      patients: [payload, ...state.patients],
     }),
     setModalOpen: (state, { payload }) => ({
       ...state,
       modalOpen: payload,
     }),
     editPatient: (state, { payload }) => {
-      const updatedPatients = state.patients.map((patient) => patient.id === payload.id ? { ...patient, ...payload } : patient);
-      
+      const updatedPatients = state.patients.map((patient) =>
+        patient.id === payload.id ? { ...patient, ...payload } : patient,
+      );
+
       return {
         ...state,
         isSubmitingPatient: false,
