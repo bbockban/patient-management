@@ -8,9 +8,14 @@ import './styles.scss';
 const PatientCardSkeleton = () => (
   <div className="patient">
     <div className="patient__header">
-      <Skeleton circle={true} height={80} width={80} className="patient__avatar" />
+      <Skeleton
+        circle={true}
+        height={80}
+        width={80}
+        className="patient__avatar"
+      />
       <div className="patient__info">
-        <Skeleton width={250} height={20} className="patient__name" />
+        <Skeleton width={300} height={20} className="patient__name" />
         <Skeleton width={80} height={16} className="patient__date" />
       </div>
     </div>

@@ -1,7 +1,7 @@
 .input {
   font-size: 0.9rem;
   margin-top: 0.25rem;
-  color: $text-grey;
+  color: $black;
   padding: 0.5rem;
   border: 1px solid $border-color;
   border-radius: 4px;
@@ -10,6 +10,10 @@
   transition: border-color 0.3s ease;
 
   @include primary-thin;
+
+  &::placeholder {
+    color: $grey;
+  }
 
   &:focus {
     border-color: $button-background;
@@ -32,7 +36,7 @@
     color: $text-color;
   }
 
-  &__message {  
+  &__message {
     font-size: 0.8rem;
     min-height: 1em;
 

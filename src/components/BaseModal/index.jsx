@@ -15,17 +15,11 @@ const BaseModal = ({
   children = null,
   overlayClassName = '',
   isOpen = false,
-}) =>(
+}) => (
   <Modal
-    className={classnames(
-      'modal',
-      className,
-    )}
+    className={classnames('modal', className)}
     isOpen={isOpen}
-    overlayClassName={classnames(
-      'modal__overlay',
-      overlayClassName,
-    )}
+    overlayClassName={classnames('modal__overlay', overlayClassName)}
     onRequestClose={onClose}
     shouldCloseOnOverlayClick
   >
