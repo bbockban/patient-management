@@ -11,14 +11,14 @@ const HTTP_FETCH = async (endpoint) => {
   const req = await response?.json();
 
   if (!response.ok) {
-    throw ({
+    throw {
       response: {
         data: {
           redirect: req.redirect,
           error: req.error,
-        }
-      }
-    });
+        },
+      },
+    };
   }
 
   return req;

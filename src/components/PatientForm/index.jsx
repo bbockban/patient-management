@@ -9,7 +9,7 @@ import Input from '@/components/Input';
 import Toast from '@components/Toast';
 
 import {
-  setModalOpen, 
+  setModalOpen,
   setCurrentPatient,
   addNewPatient,
   editPatient,
@@ -24,10 +24,14 @@ import './styles.scss';
 
 const PatientForm = () => {
   const dispatch = useDispatch();
-  
-  const isOpen = useSelector(({ sessionReducer: { modalOpen }}) => modalOpen);
-  const patient = useSelector(({ sessionReducer: { currentPatient }}) => currentPatient);
-  const isLoading = useSelector(({ sessionReducer: { isSubmitingPatient }}) => isSubmitingPatient);
+
+  const isOpen = useSelector(({ sessionReducer: { modalOpen } }) => modalOpen);
+  const patient = useSelector(
+    ({ sessionReducer: { currentPatient } }) => currentPatient,
+  );
+  const isLoading = useSelector(
+    ({ sessionReducer: { isSubmitingPatient } }) => isSubmitingPatient,
+  );
 
   const [imagePreview, setImagePreview] = useState(DefaultImage);
   const [texts, setTexts] = useState({
@@ -37,41 +41,45 @@ const PatientForm = () => {
 
   const isEdit = !!patient?.id;
 
-  const { 
-    register, 
-    handleSubmit, 
+  const {
+    register,
+    handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     dispatch(setIsSubmitingPatient(true));
 
     if (isEdit) {
-      dispatch(editPatient({
-        ...data,
-        avatar: imagePreview,
-        id: patient.id,
-      }));
+      dispatch(
+        editPatient({
+          ...data,
+          avatar: imagePreview,
+          id: patient.id,
+        }),
+      );
     } else {
       const today = new Date();
 
-      dispatch(addNewPatient({
-        ...data,
-        avatar: imagePreview,
-        createdAt: today.toISOString(),
-        id: `${data?.name}-${today.toISOString()}`
-      }));
+      dispatch(
+        addNewPatient({
+          ...data,
+          avatar: imagePreview,
+          createdAt: today.toISOString(),
+          id: `${data?.name}-${today.toISOString()}`,
+        }),
+      );
     }
 
-    Toast(texts.success, 'success')
+    Toast(texts.success, 'success');
     reset();
     dispatch(setModalOpen(false));
   };
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = e => {
     const file = e.target.files[0];
 
     if (file) {
@@ -80,20 +88,20 @@ const PatientForm = () => {
       image.src = URL.createObjectURL(file);
 
       image.onload = () => {
-        setImagePreview(image.src); 
+        setImagePreview(image.src);
       };
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      console.log(patient)
+      console.log(patient);
 
       reset({
         name: patient?.name || '',
         description: patient?.description || '',
         image: patient?.image || '',
-        website: patient?.website || ''
+        website: patient?.website || '',
       });
       setImagePreview(patient?.avatar || '');
 
@@ -102,7 +110,7 @@ const PatientForm = () => {
           success: 'Patient edited!',
           title: 'Edit a Patient',
         });
-      } 
+      }
     } else {
       reset();
       setImagePreview(DefaultImage);
@@ -114,8 +122,8 @@ const PatientForm = () => {
   }, [isOpen, isEdit]);
 
   return (
-    <BaseModal 
-      isOpen={isOpen} 
+    <BaseModal
+      isOpen={isOpen}
       onClose={() => {
         dispatch(setCurrentPatient({}));
         dispatch(setModalOpen(false));
@@ -123,7 +131,7 @@ const PatientForm = () => {
     >
       <form onSubmit={handleSubmit(onSubmit)} className="patient-form">
         <h2 className="patient-form__title">{texts.title}</h2>
-        
+
         <Input
           label="Name"
           placeholder="Enter patient name"
@@ -142,17 +150,17 @@ const PatientForm = () => {
         <div className="patent-form__image-input">
           {imagePreview && (
             <div className="patent-form__image-display">
-              <img 
-                src={imagePreview} 
-                alt="Patient Preview" 
-                className="patient-form__image" 
+              <img
+                src={imagePreview}
+                alt="Patient Preview"
+                className="patient-form__image"
                 onError={() => setImagePreview(DefaultImage)}
               />
             </div>
           )}
           <Input
             label="Avatar"
-            type="file" 
+            type="file"
             accept="image/*"
             error={errors.avatar?.message}
             onChange={handleImageUpload}
@@ -168,10 +176,10 @@ const PatientForm = () => {
           description="Provide the patient's personal or official website link."
         />
 
-        <Button 
-          type="submit" 
+        <Button
+          type="submit"
           className="patient-form__button"
-          disabled={isLoading}  
+          disabled={isLoading}
         >
           Save
         </Button>

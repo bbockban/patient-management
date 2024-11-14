@@ -14,15 +14,15 @@ import './index.scss';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-        <App />
-        <ToastContainer 
-          autoClose={3000}
-          closeOnClick
-          newestOnTop
-          pauseOnHover
-          position="top-right"
-          icon={false}
-        />
+      <App />
+      <ToastContainer
+        autoClose={3000}
+        closeOnClick
+        newestOnTop
+        pauseOnHover
+        position="top-right"
+        icon={false}
+      />
     </Provider>
   </StrictMode>,
 );

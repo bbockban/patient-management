@@ -10,29 +10,29 @@ import fetchPatients from '@/api/session.service';
 import {
   setPatients,
   setLoadingPatients,
-  setModalOpen, 
+  setModalOpen,
   setCurrentPatient,
 } from '@/features/sessionSlice';
 
-import './styles.scss'
+import './styles.scss';
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchInitPatients = async () =>{
+    const fetchInitPatients = async () => {
       dispatch(setLoadingPatients(true));
 
       try {
         const data = await fetchPatients();
 
-        dispatch(setPatients(data))
+        dispatch(setPatients(data));
       } catch {
         Toast('Somthing went wrong!', 'error');
       } finally {
-        dispatch(setLoadingPatients(false))
+        dispatch(setLoadingPatients(false));
       }
-    }
+    };
 
     fetchInitPatients();
   }, []);
@@ -40,21 +40,19 @@ const App = () => {
   return (
     <div className="dashboard">
       <div className="dashboard__header">
-        <h1 className="dashboard__title">
-          Patients List
-        </h1>
-        <Button 
+        <h1 className="dashboard__title">Patients List</h1>
+        <Button
           onClick={() => {
             dispatch(setCurrentPatient({}));
             dispatch(setModalOpen(true));
-          }} 
+          }}
         >
           Add New Patient
         </Button>
       </div>
       <PatientsList />
     </div>
-  )
-}
+  );
+};
 
 export default App;
