@@ -27,11 +27,10 @@ const App = () => {
         const data = await fetchPatients();
 
         dispatch(setPatients(data));
+
       } catch {
-        Toast('Somthing went wrong!', 'error');
-      } finally {
-        dispatch(setLoadingPatients(false));
-      }
+        Toast('Something went wrong!', 'error');
+      } 
     };
 
     fetchInitPatients();

@@ -14,7 +14,7 @@ npm run dev
 ```
 This command runs the app in development mode. Open http://localhost:5173 to view it in your browser.
 
-Add .env file for API calls as exemplified on .env.example
+Add .env file for API calls as exemplified on .env.example where the API url is the on provided for the challenge.
 
 ## Tools
 
