@@ -1,0 +1,17 @@
+.toast {
+  color: $black;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 5px;
+
+  &--success {
+    background-color: #e8fcec;
+  }
+
+  &--error {
+    background-color: #f8e4e4;
+  }
+}

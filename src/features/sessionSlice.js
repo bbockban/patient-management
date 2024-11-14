@@ -9,7 +9,7 @@ const initialState = {
     id: index + 1,
   })),
   isFetchingPatients: false,
-  isCreatingPatient: false,
+  isSubmitingPatient: false,
   currentPatient: {},
 };
 
@@ -30,22 +30,28 @@ const sessionReducer = createSlice({
       ...state,
       isFetchingPatients: payload,
     }),
+    setIsSubmitingPatient: (state, { payload }) => ({
+      ...state,
+      isSubmitingPatient: payload,
+    }),
     addNewPatient: (state, { payload }) => ({
       ...state,
+      isSubmitingPatient: false,
       patients: [
-        ...state.patients,
         payload,
+        ...state.patients,
       ],
     }),
     setModalOpen: (state, { payload }) => ({
       ...state,
-      newPostModalOpen: payload,
+      modalOpen: payload,
     }),
     editPatient: (state, { payload }) => {
-      const updatedPatients = state.patients.map(({ id }) => id === payload.id ? { ...patient, ...payload } : patient);
+      const updatedPatients = state.patients.map((patient) => patient.id === payload.id ? { ...patient, ...payload } : patient);
       
       return {
         ...state,
+        isSubmitingPatient: false,
         patients: updatedPatients,
       };
     },
@@ -58,6 +64,8 @@ export const {
   addNewPatient,
   editPatient,
   setPatients,
+  setCurrentPatient,
+  setIsSubmitingPatient,
 } = sessionReducer.actions;
 
 export default sessionReducer.reducer;

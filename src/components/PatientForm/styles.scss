@@ -1,0 +1,32 @@
+.patient-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow: scroll;
+
+  &__title {
+    @include primary-thin;
+  }
+  &__button {
+    align-self: flex-end;
+  }
+
+  &__image {
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+
+    &-input {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-display {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  }
+
+  @include primary-thin;
+}
