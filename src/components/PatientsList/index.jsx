@@ -2,6 +2,7 @@ import React from 'react';
 import {  useSelector } from 'react-redux';
 
 import PatientCard from '@/components/PatientCard';
+import PatientForm from '@/components//PatientForm';
 
 import './styles.scss'
 
@@ -16,6 +17,7 @@ const PatientsList = () => {
           patient={patient}
         />
       ))}
+      <PatientForm />
     </div>
   )
 }

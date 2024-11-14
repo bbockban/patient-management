@@ -1,0 +1,43 @@
+.input {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  color: $text-grey;
+  padding: 0.5rem;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+  @include primary-thin;
+
+  &:focus {
+    border-color: $button-background;
+  }
+
+  &--error {
+    border-color: $text-error;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  &__label {
+    @include primary-semi-bold;
+
+    margin-bottom: 0.5rem;
+    color: $text-color;
+  }
+
+  &__message {  
+    font-size: 0.8rem;
+    min-height: 1em;
+
+    &--error {
+      color: $text-error;
+    }
+  }
+}
